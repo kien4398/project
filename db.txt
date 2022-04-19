@@ -1,0 +1,3 @@
+posts: id , tittle, image,slug, content, featured, categories_id
+category: id , name, slug
+user : id, name, email, password, phone, address

@@ -1,0 +1,79 @@
+/* li{
+    background: yellow;
+}
+li:hover{
+    background: blue;
+}
+li:hover a{
+    color: red;
+}
+
+.clear{
+    clear: both;
+}
+#bok-2{
+    width: 150px;
+    height: 150px;
+    float: right;
+}
+#bok-1{
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+#bok-4{
+    width: 250px;
+    height: 250px;
+}
+#bok-3{
+    width: 200px;
+    height: 200px;
+    float: right;
+}
+#bok-1{
+    background: green;
+}
+#bok-2{
+    background: red;
+}
+#bok-3{
+    background: yellow;
+}
+#bok-4{
+    background: silver;
+} */
+/* #bok-1{
+    background: red;
+    height: 300px;
+}
+@media (max-width: 768px){
+    #bok-1{
+        background: yellow;
+    }
+}
+@media (min-width: 768px) And (max-width: 992px){
+    #bok-1{
+        background: green;
+    }
+} */
+#bok-1{
+    width: 100px;
+    height: 200px;
+    border: 1px solid red;
+    overflow: auto; /* visible, hidden, scroll */
+}
+li{
+    color: red;
+}
+li:first-child{
+    color: blue;
+    opacity: 0.7;
+    /* filter: opacity(70); */
+}
+li:last-child{
+    color: yellow;
+}
+li:nth-child(3){
+    color: green;
+}
