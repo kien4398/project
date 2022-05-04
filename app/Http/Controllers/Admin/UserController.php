@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Role;
 use App\Models\User;
 use App\Repository\UserRepository;
 use Illuminate\Http\Request;
@@ -12,76 +13,63 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
     //
     protected $userRepository;
+    private $role;
+    private $user;
     public function __construct(){
         $this->userRepository = new UserRepository();
+        $this->role = new Role();
+        $this->user = new User();
     }
 
-    public function index(){
-        //them role
-        // $role = Role::create(['name' => 'writer']);
-
-        //them permission
-        // $permission = Permission::create(['name' => 'restore posts']);
-
-        //gan role permission
-        // $role = Role::find(3);
-        // $permission = Permission::find(2);
-        // $role->givePermissionTo($permission);
-
-        //gan quyen user
-        // $user = User::find(2);
-        // $user->assignRole('editor');
-        // Auth::user()->syncRoles(['admin','editor','writer']);
-
+    public function index(User $user){
+        
         return view('backend/users/index');
     }
+    
     public function user()
     {
+        $roles = Role::all();
         $users = User::orderBy('id','desc')->get();
-        return view('backend/users/user', ['users' => $users]);
+        return view('backend/users/user', ['users' => $users,'roles' => $roles]);
     }
 
     public function addUser()
     {
-        return view('backend/users/adduser');
+        $roles = Role::all();
+        return view('backend/users/adduser',['roles' => $roles]);
     }
+
     public function createUser(Request $request)
     {
-        $data = $request->all();
+     
         $this->userRepository->createUsers($request);
         return response()->json([
             'status' => 200,
         ]);
     }
+
     public function editUser($id)
     {
+        $roles = Role::all();
         $user = User::find($id);
-        return view('backend/users/edituser', ['user' => $user]);
+        $roleOfUser = $user->roles;
+        return view('backend/users/edituser', compact('user', 'roles', 'roleOfUser'));
 
     }
+
     public function updateUser(EditUserRequest $editUserRequest, $id)
     {
-        $this->userRepository->updateUsers($editUserRequest, $id);
+        $user = User::find($id);
+        $this->userRepository->updateUsers($user,$editUserRequest, $id);
         return redirect()->route('user');
     }
+
     public function deleteUser(Request $request,$id)
-    {
-        $user = User::find($id);
-        if(is_null($user)){
-            $request->session()->flash('error','Người dùng không tồn tại!');
-            return redirect()->route('user');
-        }
-        $user->delete();
-        return redirect('admin/user');
-    }
-    public function deleteeUser(Request $request,$id)
     {   
         $user = User::find($id);
         if(is_null($user)){
@@ -89,8 +77,11 @@ class UserController extends Controller
             return redirect()->route('user');
         }
         $user->delete();
+        $user->roles()->detach($request->role_id);
+        return response()->json([
+            'code'=> '200'
+        ]);
     }
-
 
     public function trash()
     {

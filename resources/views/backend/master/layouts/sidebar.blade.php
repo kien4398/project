@@ -14,9 +14,21 @@
         <li class="{{request()->segment(2) == 'posts' ? 'active' : ''}}"><a href="/admin/posts"><svg class="glyph stroked two messages">
                     <use xlink:href="#stroked-two-messages" />
                 </svg> Quản lý bài viết</a></li>
+        <li class="{{request()->segment(2) == 'role' ? 'active' : ''}}"><a href="/admin/role"><svg class="glyph stroked gear">
+                    <use xlink:href="#stroked-gear" />
+                </svg>
+                Vai trò (Role)</a></li>
+        <li class="{{request()->segment(2) == 'permission' ? 'active' : ''}}"><a href="/admin/permission"><svg class="glyph stroked clipboard with paper">
+                    <use xlink:href="#stroked-clipboard-with-paper" />
+                </svg>
+                Quyền (Permission)</a></li>
         <!-- <li class="{{request()->is('admin/category') ? 'active' : ''}}"><a href="/admin/category"><svg class="glyph stroked open folder">
                     <use xlink:href="#stroked-open-folder" />
                 </svg>Quản lý danh mục</a></li> -->
+        <li class="{{request()->segment(2) == 'comment' ? 'active' : ''}}"><a href="/admin/comment"><svg class="glyph stroked gear">
+                    <use xlink:href="#stroked-gear" />
+                </svg>
+               Quản lí comment</a></li>
     </ul>
 
 </div>

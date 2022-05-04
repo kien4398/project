@@ -22,7 +22,7 @@
                                 <th data-field="name" data-sortable="true">Tên tiêu đề</th>
                                 <th>Ảnh bài viết</th>
                                 <th>Danh mục</th>
-                                <th>Tác giả</th>
+                                <!-- <th>Tác giả</th> -->
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -33,7 +33,6 @@
                                 <td style="">{{$post->title}}</td>
                                 <td style=""><img width="300" height="180" src="/uploads/{{$post->image}}" /></td>
                                 <td>{{$post->category->name}}</td>
-                                <td>{{$post->user->firstName}}</td>
                                 <td class="form-group">
                                     <a href="/admin/posts/untrash/{{$post->id}}" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i> Khôi phục</a>
                                 </td>

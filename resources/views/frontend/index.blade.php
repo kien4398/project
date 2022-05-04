@@ -50,10 +50,10 @@
                         <div class="card-deck">
 
                             <div class="card">
-                                <a href="/{{$post['title']}}.html"><img class="img-fluid" src="/uploads/{{$post['image']}}" alt="" /></a>
+                                <a href="{{route('detail.slug',[$post['id'], Str::slug($post['title'])])}}"><img class="img-fluid" src="/uploads/{{$post['image']}}" alt="" /></a>
                                 <div class="card-body">
                                     <h2>Tiêu đề: {{$post['title']}}</h2>
-                                    <h3><a class="tran" href="/{{$post['title']}}.html">{!!$post['content']!!}</a></h3>
+                                    <h3><a class="tran" href="{{route('detail.slug',[$post['id'], Str::slug($post['title'])])}}">{!!$post['content']!!}</a></h3>
                                 </div>
                             </div>
 
@@ -67,9 +67,9 @@
                             @foreach($latest as $postnew)
                             <div class="col-lg-4 col-md-4 col-sm-12 pro-main">
                                 <div class="product-item">
-                                    <a href="/{{$postnew['title']}}.html"><img class="img-fluid" src="/uploads/{{$postnew['image']}}" alt="" /></a>
+                                    <a href="{{route('detail.slug',[$postnew['id'], Str::slug($postnew['title'])])}}"><img class="img-fluid" src="/uploads/{{$postnew['image']}}" alt="" /></a>
                                     <h2>Tiêu đề: {{$postnew['title']}}</h2>
-                                    <h3><a href="/{{$postnew['title']}}.html">{!!$postnew['content']!!}</a></h3>
+                                    <h3><a href="{{route('detail.slug',[$postnew['id'], Str::slug($postnew['title'])])}}">{!!$postnew['content']!!}</a></h3>
                                 </div>
                             </div>
                             @endforeach

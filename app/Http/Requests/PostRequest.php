@@ -24,7 +24,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required',
+            // 'image' => 'required',
             'title' => 'required|unique:posts',
             'content' => 'required',
         ];
@@ -32,7 +32,7 @@ class PostRequest extends FormRequest
     public function messages()
     {
         return [
-            'image.required' => 'ảnh không được để trống',
+            // 'image.required' => 'ảnh không được để trống',
             'title.required' => 'tên bài không được để trống',
             'title.unique' => 'Tên bài không được trùng',
             'content.required' => 'nội dung không được để trống',

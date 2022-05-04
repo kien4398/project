@@ -1,4 +1,6 @@
+
 <style>
+    
     .avatar-wrapper {
         position: relative;
         height: 200px;
@@ -62,7 +64,7 @@
         opacity: .9;
     }
 </style>
-<div id="user_target" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div id="user_target" class="modal fade" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -80,32 +82,32 @@
                             <div class="upload-button">
                                 <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                             </div>
-                            <input required name="image" class="file-upload" type="file" accept="image/*" />
+                            <input  name="image" class="file-upload" type="file" accept="image/*" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Họ</label>
-                        <input required type="text" name="last_name" class="form-control" placeholder="">
+                        <input  type="text" name="last_name" class="form-control" placeholder="">
 
                     </div>
                     <div class="form-group">
                         <label>Tên đệm</label>
-                        <input required type="text" name="middle_name" class="form-control" placeholder="">
+                        <input  type="text" name="middle_name" class="form-control" placeholder="">
 
                     </div>
                     <div class="form-group">
                         <label>Tên</label>
-                        <input required type="text" name="first_name" class="form-control" placeholder="">
+                        <input  type="text" name="first_name" class="form-control" placeholder="">
 
                     </div>
                     <div class="form-group">
                         <label>User name</label>
-                        <input required type="text" name="user_name" class="form-control" placeholder="">
+                        <input  type="text" name="user_name" class="form-control" placeholder="">
 
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input required type="email" name="email" type="text" class="form-control">
+                        <input  type="email" name="email" type="text" class="form-control">
 
                     </div>
                     <div class="form-group">
@@ -113,6 +115,14 @@
                         <input name="password" type="password" class="form-control">
 
                     </div>
+                    <div class="form-group">
+                            <label>Vai trò</label>
+                            <select name="role_id[]" class="js-example-basic-multiple" multiple="multiple">
+                                @foreach($roles as $role)
+                                <option value="{{$role->id}}">{{$role->display_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     <button id="btn_add_user" name="sbm" type="submit" class="btn btn-success">Thêm mới</button>
                     <button type="reset" class="btn btn-default">Làm mới</button>
                 </form>
@@ -120,7 +130,9 @@
         </div>
     </div>
 </div>
+
 <script>
+    
     $(document).ready(function() {
 
         var readURL = function(input) {
@@ -141,6 +153,10 @@
 
         $(".upload-button").on('click', function() {
             $(".file-upload").click();
+        });
+
+        $('.js-example-basic-multiple').select2({
+            dropdownParent: $("#user_target")
         });
     });
 </script>

@@ -107,18 +107,20 @@
                             </div>
                             <div class="form-group">
                                 <label>Tên Bài viết</label>
-                                <input name="title" class="form-control" placeholder="">
+                                <input name="title" class="form-control" value="{{old('title')}}">
                             </div>
                             <div class="form-group">
-                                <label>Tác giả</label>
-                                <select name="user_id" class="form-control">
+                                <!-- <label>Tác giả</label> -->
+                                <input type="hidden" name="user_id" class="form-control" value="">
+
+                                <!-- <select name="user_id" class="form-control">
                                     {{!!showUser($users,0)!!}}
-                                </select>
+                                </select> -->
                             </div>
                             <div class="form-group">
                                 <label>Danh mục</label>
                                 <select name="category_id" class="form-control">
-                                    {{!!showCategory($categories,0)!!}}
+                                    {{!!showCategory($categories,0,"",0)!!}}
                                 </select>
                             </div>
                             <div class="form-group">
@@ -134,7 +136,7 @@
 
                             <div class="form-group">
                                 <label>Nội dung Bài viết</label>
-                                <textarea id="content" name="content" class="form-control"></textarea>
+                                <textarea id="content" name="content" class="form-control" >{{old('content')}}</textarea>
                                 <script>
                                     CKEDITOR.replace('content')
                                 </script>

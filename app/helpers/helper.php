@@ -17,13 +17,17 @@ if(!function_exists('showUser')){
     }
 }
 if(!function_exists('showCategory')){
-    function showCategory($categories,$child){
+    function showCategory($categories,$parent,$text,$children){
         foreach($categories as $category){
-            if($category['id']==$child){
-                echo "<option selected value=".$category['id'].">".$category['name']."</option>";
-            }else{
-                echo "<option value=".$category['id'].">".$category['name']."</option>";
+            if ($category['parent'] == $parent) {
+                if($category['id']==$children){
+                    echo "<option selected value=".$category['id'].">".$text.$category['name']."</option>";
+                }else{
+                    echo "<option value=".$category['id'].">".$text.$category['name']."</option>";
+                }
+                    $newParent = $category['id'];
+                    echo showCategory($categories,$newParent, $text."--",$children);
+                }
             }
         }
     }
-}

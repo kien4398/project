@@ -24,12 +24,13 @@
     </div>
     <!--/.row-->
     <div id="toolbar" class="btn-group">
-        @can('add posts')
-        <a data-toggle="modal" data-target="#exampleModalLong" href="" class="btn btn-success">
+        @can('add_post')
+        <!-- <a data-toggle="modal" data-target="#exampleModalLong" href="" class="btn btn-success"> -->
+        <a href="{{route('posts.add')}}" class="btn btn-success">
             <i class="glyphicon glyphicon-plus"></i> Thêm bài viết
         </a>
         @endcan
-        @can('restore posts')
+        @can('restore_post')
         <a href="{{route('posts.trash')}}" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i>Thùng rác</a>
         @endcan
     </div>
@@ -64,14 +65,15 @@
                                 <td style="">{{$post->title}}</td>
                                 <td style=""><img width="300" height="180" src="/uploads/{{$post->image}}" /></td>
                                 <td>{{$post->category->name}}</td>
-                                <td>{{$post->user->firstName}}</td>
+                                <td>{{optional($post->user)->userName}}</td>
+
                                 <td class="form-group">
-                                    @can('edit posts')
+                                    @can('edit_post')
                                     <a href="{{route('posts.edit', $post->id)}}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
                                     @endcan
-                                    @can('delete posts')
                                     <!-- <a href="{{route('posts.delete', $post->id)}}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a> -->
-                                    <button type="button" class="deletePost" data="{{$post->id}}">DEL</button>
+                                    @can('delete_post')
+                                    <button type="button" class="deletePost btn btn-danger" data-url="{{route('posts.delete',$post->id)}}"><i class="glyphicon glyphicon-remove"></i></button>
                                     @endcan
                                 </td>
                             </tr>
@@ -96,20 +98,36 @@
 <script>
     $(document).ready(function() {
         $('.deletePost').click(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            let that = $(this);
+            let urlRequest = $(this).data('url');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: "delete",
+                        url: urlRequest,
+                        success: function(response) {
+                            if (response.code == 200) {
+                                that.parent().parent().remove();
+                            }
+                        }
+                    });
                 }
-            });
-            var id = $(this).attr('data');
-            $.ajax({
-                type: "delete",
-                url: "/admin/posts/delete/"+id,
-                success: function (response) {
-                    location.reload();
-                    alert("Delete Success!")
-                }
-            });
+            })
+
         })
         $('table').DataTable({
             order: [0, 'desc']
@@ -118,6 +136,7 @@
     $(function() {
         $('#add_posts').submit(function(e) {
             e.preventDefault();
+
             const frm = new FormData(this);
             $.ajax({
                 url: "{{route('posts.store')}}",
@@ -128,14 +147,16 @@
                 processData: false,
                 dataType: 'json',
                 success: function(response) {
-                    if (response.status == 200) {
+                    if (response.code == 200) {
                         Swal.fire(
                             'Added!',
                             'User Added Successfully!',
                             'success'
                         )
+
+                        $('#add_posts')[0].reset();
                     }
-                    $('#add_posts')[0].reset();
+                    location.reload()
                     // $('#exampleModalLong').modal('hide');
                 }
             });

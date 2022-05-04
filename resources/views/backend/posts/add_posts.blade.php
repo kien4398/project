@@ -105,7 +105,7 @@
                                     <div class="form-group">
                                         <label>Danh mục</label>
                                         <select name="category_id" class="form-control">
-                                            {{!!showCategory($categories,0)!!}}
+                                            {{!!showCategory($categories,0,"",0)!!}}
                                         </select>
                                     </div>
                                     <div class="form-group">

@@ -6,10 +6,9 @@
         @foreach($posts as $post)
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="product-item card text-center">
-                <a href="/{{$post['title']}}.html"><img src="uploads/{{$post->image}}"></a>
+                <a href="/{{$post['id']}}"><img src="uploads/{{$post->image}}"></a>
                 <h2>Tiêu đề: {{$post->title}}</h2>
-                <h4><a href="/{{$post['title']}}.html">{!!$post->content!!}</a></h4>
-                <div>Tác giả:</div><a href="">{{$post->user->userName}}</a>
+                <h4><a href="{{route('detail.slug',[$post['id'], Str::slug($post['title'])])}}">{!!$post->content!!}</a></h4>
             </div>
         </div>
         @endforeach

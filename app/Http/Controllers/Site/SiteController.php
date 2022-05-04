@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -34,11 +36,13 @@ class SiteController extends Controller
         // dd($posts);
         return view('frontend/search',['categories'=>$categories,'posts'=>$posts, 'keyword'=>$keyword]);
     }
-    public function details($title){
+    public function details($id){
+        
         $categories = Category::all();
+        
+        $post = Post::where('id',$id)->get();
 
-        $post = Post::where('title',$title)->get()->toArray();
-        // dd($post[0]);
+        // dd($post);
         return view('frontend/details',['categories'=>$categories, 'post' => $post[0]]);
     }
     public function category($id){
@@ -48,5 +52,18 @@ class SiteController extends Controller
         // dd($post);
         // dd($category[0]);
         return view('frontend/category',['categories'=>$categories,'category'=>$category[0], 'post'=>$post]);
+    }
+
+    public function comment(Request $request, $post_id){
+        $user_id = Auth()->user()->id;
+        $data = [
+            'user_id' => $user_id,
+            'post_id' => $post_id,
+            'body' => $request->body
+        ];
+        $comment = Comment::create($data);
+        $comments = Comment::orderBy('created_at','desc')->where('post_id', $post_id)->get();
+        return view('frontend/list-comment', compact('comments'));
+        // return response()->json(['data'=>$comment]);
     }
 }

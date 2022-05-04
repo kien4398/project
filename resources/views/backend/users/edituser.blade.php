@@ -66,6 +66,16 @@
                             <label>Mật khẩu</label>
                             <input name="password" type="password" class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label>Vai trò</label>
+                            <select name="role_id[]" class="js-example-basic-multiple" multiple="multiple">
+                                @foreach($roles as $role)
+                                <option 
+                                {{$roleOfUser->contains('id', $role->id) ? 'selected' : ''}}
+                                value="{{$role->id}}">{{$role->display_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button name="sbm" type="submit" class="btn btn-success">Sửa</button>
                         <button type="reset" class="btn btn-default">Làm mới</button>
                     </form>
@@ -78,5 +88,9 @@
 
 </div>
 <!--/.main-->
-
+<script>
+    $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
 @endsection

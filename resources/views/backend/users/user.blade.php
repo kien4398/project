@@ -48,9 +48,7 @@
                             <tr>
                                 <th data-field="id" data-sortable="true">ID</th>
                                 <th data-field="image" data-sortable="true">Avatar</th>
-                                <th data-field="lastName" data-sortable="true">Họ</th>
-                                <th data-field="middleName" data-sortable="true">Tên đệm</th>
-                                <th data-field="firstName" data-sortable="true">Tên</th>
+                                <th data-field="lastName" data-sortable="true">Họ và tên</th>
                                 <th data-field="userName" data-sortable="true">User name</th>
                                 <th data-field="email" data-sortable="true">Email</th>
                                 <th>Hành động</th>
@@ -61,15 +59,13 @@
                             <tr>
                                 <td style="">{{$user->id}}</td>
                                 <td style="text-align: center"><img width="130" height="130" src="/image/{{$user->image}}" /></td>
-                                <td style="">{{$user->lastName}}</td>
-                                <td style="">{{$user->middleName}}</td>
-                                <td style="">{{$user->firstName}}</td>
+                                <td style="">{{$user->lastName.' '. $user->middleName.' '.$user->firstName}}</td>
                                 <td style="">{{$user->userName}}</td>
                                 <td style="">{{$user->email}}</td>
                                 <td class="form-group">
                                     <a href="{{route('user.edit', $user->id)}}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <a href="{{route('user.delete', $user->id)}}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                                    <button type="button" class="deleteUser" data="{{ $user->id }}">Del</button>
+                                    <!-- <a href="{{route('user.delete', $user->id)}}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a> -->
+                                    <button type="button" class="deleteUser btn btn-danger" data-url="{{route('user.delete',$user->id) }}"><i class="glyphicon glyphicon-remove"></i></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -94,18 +90,33 @@
     $(document).ready(function() {
         $('.deleteUser').click(function(e) {
             e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var id = $(this).attr('data')
-            $.ajax({
-                url: '/admin/user/deletee/' + id,
-                type: "delete",
-                success: function(response) {
-                    location.reload()
-                    alert('delete user success !')
+            let that = $(this);
+            let urlRequest = $(this).data('url');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: "delete",
+                        url: urlRequest,
+                        success: function(response) {
+                            if(response.code == 200){
+                                that.parent().parent().remove();
+                            }
+                        }
+                    });
                 }
             })
             
@@ -144,35 +155,6 @@
             });
         });
     });
-    //     var form = $('#add_user');
-    //     var image = form.find('.image').first().val();
-    //     var last_name = form.find('.last_name').first().val();
-    //     var middle_name = form.find('.middle_name').first().val();
-    //     var first_name = form.find('.first_name').first().val();
-    //     var user_name = form.find('.user_name').first().val();
-    //     var email = form.find('.email').first().val();
-    //     var password = form.find('.password').first().val();
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "{{route('user.create')}}",
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         },
-    //         data: {
-    //             image: image,
-    //             last_name: last_name,
-    //             middle_name: middle_name,
-    //             first_name: first_name,
-    //             user_name: user_name,
-    //             email: email,
-    //             password: password
-    //         },
-    //         dataType: 'json',
-    //         success: function(response) {
-
-    //         },
-    //     })
-    // })
 </script>
 
 @endsection
