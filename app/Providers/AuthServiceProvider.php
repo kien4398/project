@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Policies\PostPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,12 +27,20 @@ class AuthServiceProvider extends ServiceProvider
      * @return void
      */
     public function getPermissions(User $user){
-        $user = User::whereId($user->id)->with(['roles',])->get();
+
+        $cacheKey = 'permissions_of_user_'.$user->id;
+        $permissionIds = Cache::get($cacheKey);
+        if(!is_null($permissionIds)){
+            return $permissionIds;
+        }
+        
+        $user = User::whereId($user->id)->with(['roles'])->get();
         
         $permissionIds = $user->pluck('roles')->flatten()
         ->pluck('permissions')->flatten()
         ->pluck('id')->toArray();
-        // dd($permissionIds);
+        Cache::put($cacheKey,$permissionIds,300);
+
         return $permissionIds;
     }
 
