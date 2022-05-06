@@ -11,22 +11,22 @@
             <li><a href="#"><svg class="glyph stroked home">
                         <use xlink:href="#stroked-home"></use>
                     </svg></a></li>
-            <li class="active">Danh sách thành viên</li>
+            <li class="active">@lang('admin-user.ListUser')</li>
         </ol>
     </div>
     <!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Danh sách thành viên</h1>
+            <h1 class="page-header">@lang('admin-user.ListUser')</h1>
         </div>
     </div>
     <!--/.row-->
     <div id="toolbar" class="btn-group">
         <button type="button" id="create" class="btn btn-success" data-toggle="modal" data-target="#user_target">
-            <i class="glyphicon glyphicon-plus"></i>Thêm thành viên
+            <i class="glyphicon glyphicon-plus"></i>@lang('admin-user.AddUser')
         </button>
-        <a href="{{route('user.trash')}}" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i>Thùng rác</a>
+        <a href="{{route('user.trash')}}" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i>@lang('admin-user.Trash')</a>
     </div>
 
     <div>
@@ -47,11 +47,11 @@
                         <thead>
                             <tr>
                                 <th data-field="id" data-sortable="true">ID</th>
-                                <th data-field="image" data-sortable="true">Avatar</th>
-                                <th data-field="lastName" data-sortable="true">Họ và tên</th>
-                                <th data-field="userName" data-sortable="true">User name</th>
+                                <th data-field="image" data-sortable="true">@lang('admin-user.Avatar')</th>
+                                <th data-field="lastName" data-sortable="true">@lang('admin-user.FullName')</th>
+                                <th data-field="userName" data-sortable="true">@lang('admin-user.UserName')</th>
                                 <th data-field="email" data-sortable="true">Email</th>
-                                <th>Hành động</th>
+                                <th>@lang('admin-user.Action')</th>
                             </tr>
                         </thead>
                         <tbody id="list">

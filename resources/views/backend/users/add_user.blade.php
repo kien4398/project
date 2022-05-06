@@ -68,7 +68,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Thêm thành viên</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">@lang('admin-user.AddUser')</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -86,22 +86,22 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Họ</label>
+                        <label>@lang('admin-user.LastName')</label>
                         <input  type="text" name="last_name" class="form-control" placeholder="">
 
                     </div>
                     <div class="form-group">
-                        <label>Tên đệm</label>
+                        <label>@lang('admin-user.MiddleName')</label>
                         <input  type="text" name="middle_name" class="form-control" placeholder="">
 
                     </div>
                     <div class="form-group">
-                        <label>Tên</label>
+                        <label>@lang('admin-user.FirstName')</label>
                         <input  type="text" name="first_name" class="form-control" placeholder="">
 
                     </div>
                     <div class="form-group">
-                        <label>User name</label>
+                        <label>@lang('admin-user.UserName')</label>
                         <input  type="text" name="user_name" class="form-control" placeholder="">
 
                     </div>
@@ -111,20 +111,20 @@
 
                     </div>
                     <div class="form-group">
-                        <label>Mật khẩu</label>
+                        <label>@lang('admin-user.Password')</label>
                         <input name="password" type="password" class="form-control">
 
                     </div>
                     <div class="form-group">
-                            <label>Vai trò</label>
+                            <label>@lang('admin-user.Role')</label>
                             <select name="role_id[]" class="js-example-basic-multiple" multiple="multiple">
                                 @foreach($roles as $role)
                                 <option value="{{$role->id}}">{{$role->display_name}}</option>
                                 @endforeach
                             </select>
                         </div>
-                    <button id="btn_add_user" name="sbm" type="submit" class="btn btn-success">Thêm mới</button>
-                    <button type="reset" class="btn btn-default">Làm mới</button>
+                    <button id="btn_add_user" name="sbm" type="submit" class="btn btn-success">@lang('admin-user.AddNew')</button>
+                    <button type="reset" class="btn btn-default">@lang('admin-user.Refresh')</button>
                 </form>
             </div>
         </div>

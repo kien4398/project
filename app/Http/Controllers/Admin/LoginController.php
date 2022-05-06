@@ -15,13 +15,7 @@ class LoginController extends Controller
         return view('backend/login');
     }
     public function postLogin(loginRequest $loginRequest){
-        // $users = DB::table('users')->where('userName', $loginRequest->userName)->where('password', $loginRequest->password)
-        // ->get()->all();
-        // if(count($users) > 0){
-        //     return redirect('admin');
-        // }else{
-        //     return redirect('login');
-        // }
+
         if(Auth::attempt(['userName'=>$loginRequest->userName, 'password'=>$loginRequest->password])){
             return redirect('/admin');
         }else{

@@ -12,10 +12,10 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Danh sách Comment</h1>
+            <h1 class="page-header">@lang('admin-comment.ListComments')</h1>
         </div>
         <div>
-            <a href="{{route('comment.trash')}}" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i> Thung rac</a>
+            <a href="{{route('comment.trash')}}" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i>@lang('admin-comment.Trash')</a>
         </div>
     </div>
     <div class="row" id="showww">
@@ -27,9 +27,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>User</th>
-                                <th>Bài viết</th>
-                                <th>Nội dung</th>
+                                <th>@lang('admin-comment.Author')</th>
+                                <th>@lang('admin-comment.Post')</th>
+                                <th>@lang('admin-comment.Content')</th>
+                                <th>@lang('admin-comment.Action')</th>
                             </tr>
                         </thead>
                         <tbody id="list">

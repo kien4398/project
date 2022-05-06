@@ -7,15 +7,14 @@
             <li><a href="#"><svg class="glyph stroked home">
                         <use xlink:href="#stroked-home"></use>
                     </svg></a></li>
-            <li><a href="">Quản lý thành viên</a></li>
-            <li class="active">{{$user->firstName}}</li>
+            <li><a href="">@lang('admin-user.ManageUser')</a></li>
         </ol>
     </div>
     <!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Thành viên: {{$user->firstName}}</h1>
+            <h1 class="page-header">@lang('admin-user.FirstName'): {{$user->firstName}}</h1>
         </div>
     </div>
     <!--/.row-->
@@ -34,7 +33,7 @@
                     <form role="form" method="post" enctype="multipart/form-data" action="{{route('user.update', $user->id)}}">
                         @csrf    
                         <div class="form-group">
-                            <label>Avatar</label>
+                            <label>@lang('admin-user.Avatar')</label>
 
                             <input name="image" type="file">
                             <br>
@@ -43,19 +42,19 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Họ</label>
+                            <label>@lang('admin-user.LastName')</label>
                             <input name="lastName" class="form-control" placeholder="" value="{{$user->lastName}}">
                         </div>
                         <div class="form-group">
-                            <label>Tên đệm</label>
+                            <label>@lang('admin-user.MiddleName')</label>
                             <input name="middleName" class="form-control" placeholder="" value="{{$user->middleName}}">
                         </div>
                         <div class="form-group">
-                            <label>Tên</label>
+                            <label>@lang('admin-user.FirstName')</label>
                             <input name="firstName" class="form-control" placeholder="" value="{{$user->firstName}}">
                         </div>
                         <div class="form-group">
-                            <label>User name</label>
+                            <label>@lang('admin-user.UserName')</label>
                             <input name="userName" class="form-control" placeholder="" value="{{$user->userName}}">
                         </div>
                         <div class="form-group">
@@ -63,11 +62,11 @@
                             <input name="email" type="text" class="form-control" value="{{$user->email}}">
                         </div>
                         <div class="form-group">
-                            <label>Mật khẩu</label>
+                            <label>@lang('admin-user.Password')</label>
                             <input name="password" type="password" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Vai trò</label>
+                            <label>@lang('admin-user.Role')</label>
                             <select name="role_id[]" class="js-example-basic-multiple" multiple="multiple">
                                 @foreach($roles as $role)
                                 <option 
@@ -76,8 +75,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button name="sbm" type="submit" class="btn btn-success">Sửa</button>
-                        <button type="reset" class="btn btn-default">Làm mới</button>
+                        <button name="sbm" type="submit" class="btn btn-success">@lang('admin-user.Edit')</button>
+                        <button type="reset" class="btn btn-default">@lang('admin-user.Refresh')</button>
                     </form>
                         </div>
                     

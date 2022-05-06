@@ -3,8 +3,6 @@
 
 namespace App\Repository;
 
-use App\Http\Requests\EditPostRequest;
-use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\traits\ImageTrait;
 use Illuminate\Support\Facades\Auth;

@@ -16,10 +16,10 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#"><svg class="glyph stroked male-user">
                                     <use xlink:href="#stroked-male-user"></use>
-                                </svg> Hồ sơ</a></li>
+                                </svg> @lang('admin-sidebar.Profile')</a></li>
                         <li><a href="/logout"><svg class="glyph stroked cancel">
                                     <use xlink:href="#stroked-cancel"></use>
-                                </svg> Đăng xuất</a></li>
+                                </svg> @lang('admin-sidebar.Logout')</a></li>
                     </ul>
                 </li>
             </ul>

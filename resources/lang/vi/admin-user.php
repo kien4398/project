@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'Avatar' => 'Ảnh đại diện',
+    'FullName' => 'Họ và tên',
+    'UserName' => 'Tên đăng nhập',
+    'Email' => 'Email',
+    'Action' => 'Hành động',
+    'AddUser' => 'Thêm thành viên',
+    'Trash' => 'Thùng rác',
+    'ListUser' => 'Danh sách thành viên',
+    'ManageUser' => 'Quản lý thành viên',
+    'MiddleName' => 'Tên đệm',
+    'FirstName' => 'Tên',
+    'LastName' => 'Họ',
+    'Password' => 'Mật khẩu',
+    'Add' => 'Thêm',
+    'AddNew' => 'Thêm mới',
+    'Edit' => 'Sửa',
+    'Restore' => 'Khôi phục',
+    'Refresh' => 'Làm mới',
+    'Admin' => 'Quản trị viên',
+    'Writer' => 'Người viết bài',
+    'Editor' => 'Người chỉnh sửa',
+    'Restorer' => 'Người khôi phục',
+    'Role' => 'Vai trò',
+];

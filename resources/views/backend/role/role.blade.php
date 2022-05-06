@@ -12,11 +12,11 @@
     
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Danh sách vai trò</h1>
+            <h1 class="page-header">@lang('admin-role.ListRoles')</h1>
         </div>
     </div>
     <div id="toolbar" class="btn-group">
-        <a href="{{route('role.add')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>Thêm</a>
+        <a href="{{route('role.add')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>@lang('admin-role.Add')</a>
     </div>
 
     <div class="row" id="showww">
@@ -28,9 +28,9 @@
                         <thead>
                             <tr>
                                 <th >ID</th>
-                                <th >Tên vai trò</th>
-                                <th >Mô tả vai trò</th>
-                                <th>Hành động</th>
+                                <th >@lang('admin-role.RoleName')</th>
+                                <th >@lang('admin-role.RoleDescription')</th>
+                                <th>@lang('admin-role.Action')</th>
                             </tr>
                         </thead>
                         <tbody id="list">

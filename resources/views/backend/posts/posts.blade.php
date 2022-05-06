@@ -12,14 +12,14 @@
             <li><a href="#"><svg class="glyph stroked home">
                         <use xlink:href="#stroked-home"></use>
                     </svg></a></li>
-            <li class="active">Danh sách bài viết</li>
+            <li class="active">@lang('admin-post.ListPosts')</li>
         </ol>
     </div>
     <!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Danh sách bài viết</h1>
+            <h1 class="page-header">@lang('admin-post.ListPosts')</h1>
         </div>
     </div>
     <!--/.row-->
@@ -27,11 +27,11 @@
         @can('add_post')
         <!-- <a data-toggle="modal" data-target="#exampleModalLong" href="" class="btn btn-success"> -->
         <a href="{{route('posts.add')}}" class="btn btn-success">
-            <i class="glyphicon glyphicon-plus"></i> Thêm bài viết
+            <i class="glyphicon glyphicon-plus"></i> @lang('admin-post.Add')
         </a>
         @endcan
         @can('restore_post')
-        <a href="{{route('posts.trash')}}" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i>Thùng rác</a>
+        <a href="{{route('posts.trash')}}" class="btn btn-warning"><i class="glyphicon glyphicon-trash"></i>@lang('admin-post.Trash')</a>
         @endcan
     </div>
     <div>
@@ -51,11 +51,11 @@
                         <thead>
                             <tr>
                                 <th data-field="id" data-sortable="true">ID</th>
-                                <th data-field="name" data-sortable="true">Tên tiêu đề</th>
-                                <th>Ảnh bài viết</th>
-                                <th>Danh mục</th>
-                                <th>Tác giả</th>
-                                <th>Hành động</th>
+                                <th data-field="name" data-sortable="true">@lang('admin-post.Title')</th>
+                                <th>@lang('admin-post.Image')</th>
+                                <th>@lang('admin-post.Category')</th>
+                                <th>@lang('admin-post.Author')</th>
+                                <th>@lang('admin-post.Action')</th>
                             </tr>
                         </thead>
                         <tbody>

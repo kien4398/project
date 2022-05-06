@@ -7,14 +7,14 @@
 			<li><a href="#"><svg class="glyph stroked home">
 						<use xlink:href="#stroked-home"></use>
 					</svg></a></li>
-			<li class="active">Trang chủ quản trị</li>
+			<li class="active">@lang('admin-sidebar.AdminHomePage')</li>
 		</ol>
 	</div>
 	<!--/.row-->
 
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Trang chủ quản trị</h1>
+			<h1 class="page-header">@lang('admin-sidebar.AdminHomePage')</h1>
 		</div>
 	</div>
 	<!--/.row-->
@@ -30,7 +30,7 @@
 					</div>
 					<div class="col-sm-9 col-lg-7 widget-right">
 						<div class="large">{{count($post)}}</div>
-						<div class="text-muted">Bài viết</div>
+						<div class="text-muted">@lang('admin-sidebar.Posts')</div>
 					</div>
 				</div>
 			</div>
@@ -45,7 +45,7 @@
 					</div>
 					<div class="col-sm-9 col-lg-7 widget-right">
 						<div class="large">{{count($user)}}</div>
-						<div class="text-muted">Thành Viên</div>
+						<div class="text-muted">@lang('admin-sidebar.Users')</div>
 					</div>
 				</div>
 			</div>

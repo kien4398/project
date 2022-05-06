@@ -16,13 +16,13 @@
                         <thead>
                             <tr>
                                 <th data-field="id" data-sortable="true">ID</th>
-                                <th data-field="image" data-sortable="true">Avatar</th>
-                                <th data-field="lastName" data-sortable="true">Họ</th>
-                                <th data-field="middleName" data-sortable="true">Tên đệm</th>
-                                <th data-field="firstName" data-sortable="true">Tên</th>
-                                <th data-field="userName" data-sortable="true">User name</th>
+                                <th data-field="image" data-sortable="true">@lang('admin-user.Avatar')</th>
+                                <th data-field="lastName" data-sortable="true">@lang('admin-user.LastName')</th>
+                                <th data-field="middleName" data-sortable="true">@lang('admin-user.MiddleName')</th>
+                                <th data-field="firstName" data-sortable="true">@lang('admin-user.FirstName')</th>
+                                <th data-field="userName" data-sortable="true">@lang('admin-user.UserName')</th>
                                 <th data-field="email" data-sortable="true">Email</th>
-                                <th>Hành động</th>
+                                <th>@lang('admin-user.Action')</th>
                             </tr>
                         </thead>
                         <tbody id="list">
@@ -36,7 +36,7 @@
                                 <td style="">{{$user->userName}}</td>
                                 <td style="">{{$user->email}}</td>
                                 <td class="form-group">
-                                <a href="{{route('user.untrash', $user->id)}}" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i> Khôi phục</a>
+                                <a href="{{route('user.untrash', $user->id)}}" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i> @lang('admin-user.Restore')</a>
                                 </td>
                             </tr>
                             @endforeach

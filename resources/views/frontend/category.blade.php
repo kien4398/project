@@ -1,7 +1,7 @@
 @extends('frontend/master/master')
 <base href="../">
 @section('main')
-<div class="container">
+<div id="product-f" class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <h1 style="color:red;">Danh Mục: {{$category['name']}} </h1>

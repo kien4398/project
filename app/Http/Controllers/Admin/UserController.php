@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     //
-    protected $userRepository;
-    private $role;
-    private $user;
+
     public function __construct(){
         $this->userRepository = new UserRepository();
         $this->role = new Role();
