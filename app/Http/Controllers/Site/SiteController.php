@@ -25,7 +25,7 @@ class SiteController extends Controller
     }
     public function search(Request $request){
         $categories = Category::all();
-
+ 
         $keyword = $request->keyword;
         $arr_keyword = explode(' ',$keyword);
         $str_keyword = '%'.implode('%',$arr_keyword).'%';

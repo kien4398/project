@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class CommentController extends Controller
 {
@@ -17,10 +18,17 @@ class CommentController extends Controller
         return view('backend/comments/edit_comment', compact('comment'));
     }
     public function update($id, Request $request){
+        $request->validate([
+            'body' => 'required',
+        ]);
         $comment = Comment::find($id);
         $comment->body = $request->body;
         $comment->save();
-        return redirect()->route('comment.index');
+        if ($comment) {
+            return redirect()->route('comment.index');
+        }else{
+            return redirect()->back()->withInput();
+        }
     }
     public function delete($id){
         $comment = Comment::find($id);
