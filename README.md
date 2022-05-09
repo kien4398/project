@@ -43,6 +43,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
 - **[DevSquad](https://devsquad.com)**
 - **[OP.GG](https://op.gg)**
+- **[FB](facebook.com/kienking98/)**
 
 ## Contributing
 
